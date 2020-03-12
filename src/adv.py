@@ -80,15 +80,22 @@ user_input = ""
 """
 BF comment:
 Helper functions:
--- print_seperator, prints a line separator so that it is easy for the user to see
+"""
+
+"""
+prints a line separator so that it is easy for the user to see
 different time slices of the game
--- get_user_input(), returns a list which is one or two elements long. The first element
-is the action word, the second element is a noun. The returned input will be verified
 """
 
 
 def print_separator():
     print('~'*screen_width)
+
+
+"""
+returns a list which is one or two elements long. The first element is the action
+word, the second element is a noun. The returned input will be verified
+"""
 
 
 def get_user_input():
@@ -123,11 +130,17 @@ def get_user_input():
         return [input_list[0], input_list[1]]
 
 
-def validate_item_name(item_name):
+"""
+checks if the item specified from taking or dropping is a valid item
+"""
+
+
+def validate_item_name(item_name, location):
     if item_name in items:
         return True
     else:
-        print(f'There is no such item as {item_name}')
+        print(
+            f'The item {item_name} is not {location}')
         time.sleep(sleep_value)
         return False
 
@@ -159,13 +172,13 @@ while not end_game:
     elif user_input[0] in ['n', 's', 'e', 'w']:
         player.move_to_room(user_input[0])
     elif user_input[0] in ['get', 'take']:
-        # print(f'You want to pick up the item: {user_input[1]}')
-        if validate_item_name(user_input[1]):
+        if validate_item_name(user_input[1], 'in the room'):
             player.pick_up(items[user_input[1]])
     elif user_input[0] == "drop":
-        print(f'You want to drop the item: {user_input[1]}')
+        # print(f'You want to drop the item: {user_input[1]}')
+        if validate_item_name(user_input[1], 'in your inventory'):
+            player.drop_down(items[user_input[1]])
     elif user_input[0] == 'i':
-        # print('You want to check your inventory')
         player.display_inventory()
 
 print('Thank you for playing')

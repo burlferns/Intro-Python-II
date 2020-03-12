@@ -40,6 +40,18 @@ class Player:
             item.on_take()
             time.sleep(sleep_value)
 
+    def drop_down(self, item):
+        try:
+            self.items.index(item)
+        except ValueError:
+            print(f'The item {item} is not in your inventory')
+            time.sleep(sleep_value)
+        else:
+            self.items.remove(item)
+            self.current_room.items.append(item)
+            item.on_drop()
+            time.sleep(sleep_value)
+
     def display_inventory(self):
         if len(self.items) == 0:
             print('You have no items in your inventory')

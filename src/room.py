@@ -36,7 +36,7 @@ class Room():
                 room_items += f'{n}'
                 if i < items_len-1:
                     room_items += ", "
-            print(f'There are the follwing items here: {room_items}')
+            print(f'There are the following items in this room: {room_items}')
         # time.sleep(sleep_value)
 
     def __str__(self):

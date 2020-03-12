@@ -15,6 +15,9 @@ class Item:
         item_info = f'Here is some information about this item: {self.description}'
         print(textwrap.fill(item_info, screen_width))
 
+    def on_drop(self):
+        print(f'You have dropped {self.name}')
+
 
 class Hammer(Item):
     def __init__(self):
